@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <title>&lt;steroid-drop&gt;</title>
+
+    <!-- Imports polyfill -->
+    <script src="../webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="../polymer/polymer.html">
+    <!-- Imports custom element -->
+    <link rel="import" href="demo/custom-data.html">
+    <link rel="import" href="steroid-drop.html">
+
+</head>
+<body unresolved>
+  <template is="dom-bind">
+    <custom-data custom-data="{{data}}"></custom-data>
+    <!-- Runs custom element -->
+    <steroid-drop items="{{data}}" as="item">
+      <style>
+        .box {
+          border: 2px solid #621;
+          margin: 5px;
+          box-shadow: 1px 1px 1px #444;
+          width: 200px;
+        }
+      </style>
+      <template>
+        <h1 draggable class="box">Hello <span>{{item.name}}</span></h1>
+      </template>
+    </steroid-drop>
+  </template>
+</body>
+</html>
