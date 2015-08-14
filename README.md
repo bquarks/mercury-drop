@@ -1,20 +1,20 @@
-# &lt;steroid-drop&gt;
+# &lt;mercury-drop&gt;
 
 > Easy draggable list for web components.
 
 ## Demo
 
-[Check it live!](https://github.com/bquarks/steroid-drop)
+[Check it live!](https://github.com/bquarks/mercury-drop)
 
 ## Install
 
 Install the component using [Bower](http://bower.io/):
 
 ```sh
-$ bower install steroid-drop --save
+$ bower install mercury-drop --save
 ```
 
-Or [download as ZIP](https://github.com/bquarks/steroid-drop/archive/master.zip).
+Or [download as ZIP](https://github.com/bquarks/mercury-drop/archive/master.zip).
 
 ## Usage
 
@@ -27,13 +27,13 @@ Or [download as ZIP](https://github.com/bquarks/steroid-drop/archive/master.zip)
 2. Import custom element:
 
     ```html
-    <link rel="import" href="bower_components/steroid-drop/steroid-drop.html">
+    <link rel="import" href="bower_components/mercury-drop/mercury-drop.html">
     ```
 
 3. Start using it!
 
     ```html
-    <steroid-drop items="{{data}}" as="item">
+    <mercury-drop items="{{data}}" as="item">
       <style>
         .box {
           border: 2px solid #621;
@@ -45,7 +45,7 @@ Or [download as ZIP](https://github.com/bquarks/steroid-drop/archive/master.zip)
       <template>
         <h1 draggable class="box">Hello <span>{{item.name}}</span></h1>
       </template>
-    </steroid-drop>
+    </mercury-drop>
     ```
 
 ## Usage
@@ -84,7 +84,7 @@ In order to run it locally you'll need to fetch some dependencies and a basic se
 
 ## History
 
-For detailed changelog, check [Releases](https://github.com/donflopez/steroid-drop/releases).
+For detailed changelog, check [Releases](https://github.com/donflopez/mercury-drop/releases).
 
 ## License
 

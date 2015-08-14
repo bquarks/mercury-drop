@@ -1,9 +1,9 @@
 {
-    "name": "steroid-drop",
-    "version": "0.0.0",
+    "name": "mercury-drop",
+    "version": "0.9.0",
     "description": "Easy draggable lists for web components.",
     "license": "MIT",
-    "main": "steroid-drop.html",
+    "main": "mercury-drop.html",
     "keywords": [
         "polymer",
         "web-components"

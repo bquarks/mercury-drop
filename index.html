@@ -3,21 +3,21 @@
 <head>
 
     <meta charset="utf-8">
-    <title>&lt;steroid-drop&gt;</title>
+    <title>&lt;mercury-drop&gt;</title>
 
     <!-- Imports polyfill -->
     <script src="../webcomponentsjs/webcomponents-lite.min.js"></script>
     <link rel="import" href="../polymer/polymer.html">
     <!-- Imports custom element -->
     <link rel="import" href="demo/custom-data.html">
-    <link rel="import" href="steroid-drop.html">
+    <link rel="import" href="mercury-drop.html">
 
 </head>
 <body unresolved>
   <template is="dom-bind">
     <custom-data custom-data="{{data}}"></custom-data>
     <!-- Runs custom element -->
-    <steroid-drop items="{{data}}" as="item">
+    <mercury-drop items="{{data}}" as="item">
       <style>
         .box {
           border: 2px solid #621;
@@ -29,7 +29,7 @@
       <template>
         <h1 draggable class="box">Hello <span>{{item.name}}</span></h1>
       </template>
-    </steroid-drop>
+    </mercury-drop>
   </template>
 </body>
 </html>
