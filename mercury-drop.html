@@ -358,11 +358,16 @@ Polymer({
         case 'start':
           this.moving = e.detail.hover();
 
-          while (!this.moving.attributes.draggable && this.moving.parentElement ) {
-            this.moving = this.moving.parentElement;
+          while (!this.moving.attributes || !this.moving.attributes.draggable) {
+            if (this.moving.parentNode) {
+              this.moving = this.moving.parentNode;
+            }
+            else if (this.moving.host){
+              this.moving = this.moving.host;
+            }
           }
 
-          if (this.moving.attributes.draggable) {
+          if (this.moving.attributes && this.moving.attributes.draggable) {
             this._canMove = true;
             this.$.items.className += ' grabbing';
             var last = this._setInitHole(this.moving);
