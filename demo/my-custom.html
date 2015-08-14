@@ -1,0 +1,55 @@
+<!-- Imports polymer -->
+<link rel="import" href="../../polymer/polymer.html">
+
+<!-- Defines element markup -->
+<dom-module id="my-custom">
+  <template id="">
+    <h1>{{name}}</h1>
+  </template>
+</dom-module>
+
+<!-- Registers custom element -->
+<script>
+Polymer({
+    is: 'my-custom',
+
+    properties: {
+      name: {
+        type: String,
+        notify: true
+      }
+    },
+
+    observers: [
+      '_itemsChanged(name)'
+    ],
+
+    // Fires when an instance of the element is created
+    created: function() {
+
+    },
+
+
+    // Fires when the local DOM has been fully prepared
+    ready: function() {
+
+    },
+
+    // Fires when the element was inserted into the document
+    attached: function() {
+
+    },
+
+    // Fires when the element was removed from the document
+    detached: function() {},
+
+    // Fires when an attribute was added, removed, or updated
+    attributeChanged: function(attr, oldVal, newVal) {
+      console.log('Items changed!!!');
+    },
+
+    _itemsChanged: function (name) {
+      console.log('Changeeeeeeeeeeed', name);
+    }
+});
+</script>

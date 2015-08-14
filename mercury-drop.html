@@ -66,37 +66,38 @@ To set styles to the temporal box where to place the item, you must use the clas
 
 <!-- Imports polymer -->
 <link rel="import" href="../polymer/polymer.html">
-
-<style>
-  .drop-hide {
-    display: none !important;
-  }
-
-  .phantom-box {
-    background-color: white;
-    opacity: 0.8;
-    border: 2px solid #6AF;
-  }
-
-  .drop-container {
-    -webkit-user-select: none; /* Chrome/Safari */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* IE10+ */
-    -o-user-select: none;
-    user-select: none;
-
-    cursor: -webkit-grab;
-    cursor: -moz-grab;
-  }
-
-  .drop-container.grabbing {
-    cursor: -webkit-grabbing;
-    cursor: -moz-grabbing;
-  }
-
-</style>
 <!-- Defines element markup -->
+
 <dom-module id="mercury-drop">
+  <style>
+
+    ::content .drop-hide {
+      display: none !important;
+    }
+
+    ::content .phantom-box {
+      background-color: white;
+      opacity: 0.8;
+      border: 2px solid #6AF;
+    }
+
+    :host .drop-container {
+      -webkit-user-select: none; /* Chrome/Safari */
+      -moz-user-select: none; /* Firefox */
+      -ms-user-select: none; /* IE10+ */
+      -o-user-select: none;
+      user-select: none;
+
+      cursor: -webkit-grab;
+      cursor: -moz-grab;
+    }
+
+    :host .drop-container.grabbing {
+      cursor: -webkit-grabbing;
+      cursor: -moz-grabbing;
+    }
+
+  </style>
     <template>
       <div id="items" class="drop-container">
         <content></content>
@@ -249,8 +250,9 @@ Polymer({
     },
 
     _setAbsolutePosition: function (el, last) {
-      var x = el.offsetLeft - parseInt(this.computed.marginLeft),
-          y = el.offsetTop - parseInt(this.computed.marginTop);
+      var bound = el.getBoundingClientRect(),
+          x = el.offsetLeft - parseInt(this.computed.marginLeft),
+          y = bound.top - parseInt(this.computed.marginTop);
 
       this.oldPos = el.style.position;
 
@@ -273,13 +275,19 @@ Polymer({
       el.className += ' drop-hide';
       hover = e.detail.hover();
 
-      while (!hover.attributes.draggable && hover.parentElement ) {
-        hover = hover.parentElement;
+      while (!hover.attributes || !hover.attributes.draggable) {
+        if (hover.parentNode) {
+          hover = hover.parentNode;
+        }
+        else if (hover.host){
+          hover = hover.host;
+        }
+        break;
       }
 
       el.className = state;
 
-      return hover.attributes.draggable ? hover : null;
+      return hover.attributes && hover.attributes.draggable ? hover : null;
     },
 
     _changeMovingElement: function () {

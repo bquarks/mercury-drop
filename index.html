@@ -10,6 +10,7 @@
     <link rel="import" href="../polymer/polymer.html">
     <!-- Imports custom element -->
     <link rel="import" href="demo/custom-data.html">
+    <link rel="import" href="demo/my-custom.html">
     <link rel="import" href="mercury-drop.html">
 
 </head>
@@ -27,7 +28,7 @@
         }
       </style>
       <template>
-        <h1 draggable class="box">Hello <span>{{item.name}}</span></h1>
+        <h1 draggable class="box"><my-custom name={{item.name}}></my-custom></h1>
       </template>
     </mercury-drop>
   </template>
