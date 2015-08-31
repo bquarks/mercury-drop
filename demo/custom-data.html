@@ -56,8 +56,10 @@ Polymer({
       console.log('Items changed!!!');
     },
 
-    _itemsChanged: function () {
-      console.log('Changeeeeeeeeeeed');
+    _itemsChanged: function (attribute, newAt) {
+      console.log('######################');
+      console.log(attribute);
+      console.log('######################');
     }
 });
 </script>

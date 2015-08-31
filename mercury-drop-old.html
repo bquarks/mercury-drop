@@ -98,7 +98,7 @@ To set styles to the temporal box where to place the item, you must use the clas
     }
 
   </style>
-    <template>
+    <template is="dom-bind">
       <div id="items" class="drop-container">
         <content></content>
       </div>
@@ -119,23 +119,29 @@ Polymer({
       as: {
         type: String,
         value: 'item'
+      },
+
+      thematicSelected: {
+        type: Object,
+        notify: true
       }
     },
 
     coll: null,
 
-    // observers: [
-    //   // '_itemsChanged(items)'
-    // ],
-    //
-    // behaviors: [
-    //   Polymer.Templatizer
-    // ],
+    observers: [
+      '_itemsChanged(items)'
+    ],
+
+    behaviors: [
+      Polymer.Templatizer
+    ],
 
     // Fires when an instance of the element is created
     created: function() {
       // console.log(this.items);
-      // this.templatize(Polymer.dom(this).querySelector('template'));
+      this.templatize(Polymer.dom(this).querySelector('template'));
+      Drop = this;
     },
 
     // Fires when the local DOM has been fully prepared
@@ -323,14 +329,7 @@ Polymer({
         }
       }
 
-      console.log(it);
-      this.set('items', []);
-      var _this = this;
-
-      setTimeout(function () {
-        _this.set('items', it);
-        Polymer.dom.flush();
-      }, 0);
+      this.items = it;
     },
 
     handleMove: function (e) {
@@ -413,43 +412,43 @@ Polymer({
       window.removeEventListener('mousemove', this.handleMove);
     },
 
-    // instances: [],
-    //
-    // _itemsChanged: function (items) {
-    //   this.coll = Polymer.Collection.get(items);
-    //
-    //   var childLen = this.$.items.children.length,
-    //       itLen = items.length;
-    //
-    //   for (var i = childLen; --i > 0;) {
-    //     if (this.$.items.children[i].attributes.draggable) {
-    //       Polymer.dom(this).removeChild(this.$.items.children[i]);
-    //       Polymer.dom.flush();
-    //     }
-    //   }
-    //
-    //   this.instances = [];
-    //
-    //   for (var i = 0; i < itLen; i++) {
-    //     this.templatize(Polymer.dom(this).querySelector('template'));
-    //     var inst = this.stamp(null);
-    //     this.instances.push(inst);
-    //     Polymer.dom(this).appendChild(inst.root);
-    //   }
-    //
-    //   this.debounce('refresh', this._insertItems);
-    // },
-    //
-    // _insertItems: function () {
-    //   var items = this.items;
-    //   for (var i = 0; i < items.length; i++) {
-    //     var element = this.instances[i];
-    //     element[this.as] = items[i];
-    //   }
-    //
-    // },
-    //
-    // // Fires when an attribute was added, removed, or updated
-    // attributeChanged: function(attr, oldVal, newVal) {}
+    instances: [],
+
+    _itemsChanged: function (items) {
+      this.coll = Polymer.Collection.get(items);
+
+      var childLen = this.$.items.children.length,
+          itLen = items.length;
+
+      for (var i = childLen; --i > 0;) {
+        if (this.$.items.children[i].attributes.draggable) {
+          Polymer.dom(this).removeChild(this.$.items.children[i]);
+          Polymer.dom.flush();
+        }
+      }
+
+      this.instances = [];
+
+      for (var i = 0; i < itLen; i++) {
+        this.templatize(Polymer.dom(this).querySelector('template'));
+        var inst = this.stamp(null);
+        this.instances.push(inst);
+        Polymer.dom(this).appendChild(inst.root);
+      }
+
+      this.debounce('refresh', this._insertItems);
+    },
+
+    _insertItems: function () {
+      var items = this.items;
+      for (var i = 0; i < items.length; i++) {
+        var element = this.instances[i];
+        element[this.as] = items[i];
+      }
+
+    },
+
+    // Fires when an attribute was added, removed, or updated
+    attributeChanged: function(attr, oldVal, newVal) {}
 });
 </script>

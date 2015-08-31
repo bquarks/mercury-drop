@@ -17,17 +17,17 @@
 <body unresolved>
   <template is="dom-bind">
     <custom-data custom-data="{{data}}"></custom-data>
+    <style>
+      .box {
+        border: 2px solid #621;
+        margin: 5px;
+        box-shadow: 1px 1px 1px #444;
+        width: 200px;
+      }
+    </style>
     <!-- Runs custom element -->
     <mercury-drop items="{{data}}" as="item">
-      <style>
-        .box {
-          border: 2px solid #621;
-          margin: 5px;
-          box-shadow: 1px 1px 1px #444;
-          width: 200px;
-        }
-      </style>
-      <template>
+      <template is="dom-repeat" items="{{data}}" as="item">
         <h1 draggable class="box"><my-custom name={{item.name}}></my-custom></h1>
       </template>
     </mercury-drop>
