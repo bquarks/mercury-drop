@@ -1,6 +1,6 @@
 {
   "name": "mercury-drop",
-  "version": "0.9.6",
+  "version": "0.9.7",
   "description": "Easy draggable lists for web components.",
   "license": "MIT",
   "main": "mercury-drop.html",

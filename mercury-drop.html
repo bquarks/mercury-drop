@@ -293,13 +293,16 @@ Polymer({
       if (this.box) {
         var aftElement = this.box.nextElementSibling;
         if (aftElement && aftElement !== this.moving && this.moving !== this.box.previousElementSibling) {
-          Polymer.dom(this).insertBefore(this.moving, aftElement);
+          Polymer.dom(aftElement.parentNode).insertBefore(this.moving, aftElement);
         }
         else if (aftElement === this.moving || this.moving === this.box.previousElementSibling) {
           return;
         }
         else {
-          Polymer.dom(this.$.items).appendChild(this.moving);
+          aftElement = this.box.previousElementSibling;
+          if (aftElement) {
+            Polymer.dom(this.$.items).appendChild(this.moving);
+          }
         }
       }
       Polymer.dom.flush();
@@ -313,7 +316,7 @@ Polymer({
     },
 
     _getNewItemsObject: function () {
-      var els = this.$.items.children,
+      var els = this.querySelectorAll('[draggable]'),
           len = els.length,
           it = [];
 
@@ -323,14 +326,15 @@ Polymer({
         }
       }
 
-      console.log(it);
       this.set('items', []);
+      Polymer.dom.flush();
       var _this = this;
 
       setTimeout(function () {
-        _this.set('items', it);
+        // _this.set('items', it);
+        _this.items = it;
         Polymer.dom.flush();
-      }, 0);
+      }, 10);
     },
 
     handleMove: function (e) {
