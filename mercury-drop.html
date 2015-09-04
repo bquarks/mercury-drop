@@ -92,7 +92,23 @@ To set styles to the temporal box where to place the item, you must use the clas
       cursor: -moz-grab;
     }
 
-    :host .drop-container.grabbing {
+    :host {
+      position: relative;
+      display: block;
+    }
+
+    ::content *{
+      -webkit-user-select: none; /* Chrome/Safari */
+      -moz-user-select: none; /* Firefox */
+      -ms-user-select: none; /* IE10+ */
+      -o-user-select: none;
+      user-select: none;
+
+      cursor: -webkit-grab;
+      cursor: -moz-grab;
+    }
+
+    ::content .grabbing {
       cursor: -webkit-grabbing;
       cursor: -moz-grabbing;
     }
@@ -249,8 +265,7 @@ Polymer({
     },
 
     _setAbsolutePosition: function (el, last) {
-      var bound = el.getBoundingClientRect(),
-          x = el.offsetLeft - parseInt(this.computed.marginLeft),
+      var x = el.offsetLeft - parseInt(this.computed.marginLeft),
           y = el.offsetTop - parseInt(this.computed.marginTop);
 
       this.oldPos = el.style.position;
