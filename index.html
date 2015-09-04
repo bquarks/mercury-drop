@@ -7,12 +7,15 @@
 
     <!-- Imports polyfill -->
     <script src="../webcomponentsjs/webcomponents-lite.min.js"></script>
+    <script>
+      window.Polymer = window.Polymer || {};
+      window.Polymer.dom = 'shadow';
+    </script>
     <link rel="import" href="../polymer/polymer.html">
     <!-- Imports custom element -->
     <link rel="import" href="demo/custom-data.html">
     <link rel="import" href="demo/my-custom.html">
     <link rel="import" href="mercury-drop.html">
-
 </head>
 <body unresolved>
   <template is="dom-bind">
@@ -23,6 +26,11 @@
         margin: 5px;
         box-shadow: 1px 1px 1px #444;
         width: 200px;
+      }
+
+      mercury-drop {
+        max-width: 100vh;
+        max-height: 100vh;
       }
     </style>
     <!-- Runs custom element -->
