@@ -43,7 +43,9 @@ Or [download as ZIP](https://github.com/bquarks/mercury-drop/archive/master.zip)
         }
       </style>
       <template>
-        <h1 draggable class="box">Hello <span>{{item.name}}</span></h1>
+        <dom-repeat items={{data}}>
+            <li draggable class="box">Hello <span>{{item.name}}</span></li>
+        </dom-repeat>
       </template>
     </mercury-drop>
     ```
